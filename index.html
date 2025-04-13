@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MGKO</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: monospace;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .title-container {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .title {
+      font-size: 36px;
+      color: #00f0ff;
+      text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #ff4d4d;
+      text-shadow: 0 0 10px #ffcccc, 0 0 5px #ffd700;
+    }
+
+    .enter-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background: #222;
+      color: #ffd700;
+      font-size: 14px;
+      border: 1px solid #555;
+      border-radius: 8px;
+      text-shadow: 0 0 5px #ffd700;
+      box-shadow: 0 0 10px #0f0;
+      cursor: pointer;
+      font-family: monospace;
+    }
+
+    .enter-button:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+<script>
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const symbols = '𓂀⌇𒁓∆Ω01∎⟊⌬𒆜⊠7𓊽⧉⌘𒈙';
+  const chars = symbols.split('');
+  const fontSize = 16;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
+
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#0F0';
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+
+      drops[i]++;
+    }
+  }
+
+  setInterval(drawMatrix, 50);
+</script>
+
+<div class="title-container">
+  <div class="title">𓂀MGK𒆜</div>
+  <div class="subtitle">✶⊹𒀱𒄿𒊕𒆠𒈠𒀭𒆬𒄿𒀭⊹✶</div>
+</div>
+
+<button class="enter-button">𒀱𒂍𒅗𒈠𒁕𒀜</button>
+
+<script>
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
+
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const symbols = "𒆠𒇻𒅗𒁲𒄑𒀀𒆬𒉿𒊍𒍑𒋼𒂍";
+  const fontSize = 3;
+  const columns = canvas.width / fontSize;
+
+  const drops = [];
+  for (let i = 0; i < columns; i++) {
+    drops[i] = Math.random() * canvas.height;
+  }
+
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00FF00";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = symbols.charAt(Math.floor(Math.random() * symbols.length));
+      const x = i * fontSize;
+      const y = drops[i] * fontSize;
+
+      // لا تطبع خلف العنوان
+      if (!(y < 100 && x > canvas.width / 2 - 200 && x < canvas.width / 2 + 200)) {
+        ctx.fillText(text, x, y);
+      }
+
+      if (y > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+
+      drops[i]++;
+    }
+  }
+
+  setInterval(drawMatrix, 70);
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+</body>
+</html>
+<body dir="rtl">
+  font-family: 'Amiri', serif;
+  <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نص هاروت وماروت</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #text {
+      position: absolute;
+      bottom: 80px; /* أبعد النص عن الزر */
+      right: 20px;
+      width: 260px;
+      color: red;
+      font-family: 'Amiri', serif;
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      text-shadow: 0 0 4px red;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .char {
+      display: inline-block;
+      animation: shake 0.15s ease-in-out;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(1px, -1px); }
+      50% { transform: translate(-1px, 1px); }
+      75% { transform: translate(1px, 1px); }
+      100% { transform: translate(0px, 0px); }
+    }
+  </style>
+</head>
+<body>
+  <div id="text"></div>
+
+  <script>
+    const textconst text = `Rēx Taurōrum sub caelō fremuit,  
+Cornua eius gladius, oculī fatum sunt.
+
+In nocte tacitē per tenebrās movetur,  
+Velut vultus quem nēmō exspectat.
+
+Secretum vetustātis ferēns in corde,  
+Fidem frangit ubi mundus ipse fallit.`;َ
+
+    const container = document.getElementById("text");
+
+    setTimeout(() => {
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          const span = document.createElement("span");
+          span.textContent = text[i];
+          if (text[i] !== ' ' && text[i] !== '\n') {
+            span.classList.add('char');
+          }
+          container.appendChild(span);
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 60);
+    }, 5000);
+  </script>
+</body>
+</html>
+#text {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  width: 200px; /* تم تقليل العرض */
+  color: red;
+  font-family: 'Amiri', serif;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  text-shadow: 0 0 4px red;
+  direction: rtl;
+  text-align: right;
+}
+<audio id="typingSound" src="typewriter.mp3"></audio>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      const text = document.getElementById('text');
+      const audio = document.getElementById('typingSound');
+      text.style.display = 'block';
+      audio.play();
+    }, 5000);
+  });
+</script>
+<div id="countdown" style="
+    position: fixed;
+    bottom: 90px;
+    left: 5px;
+    font-size: 3px;
+    color: crimson;
+    font-family: monospace;
+    padding: 8px 6px;
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 0, 255, 0.4);
+    box-shadow: inset 0 0 4px rgba(255, 0, 255, 0.2), 0 0 3px rgba(255, 255, 0, 0.1);
+    background: repeating-linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.02),
+        rgba(0, 0, 0, 0.02) 2px,
+        rgba(0, 0, 0, 0.05) 2px,
+        rgba(0, 0, 0, 0.05) 4px
+    );
+    z-index: 1000;
+    width: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    line-height: 1.5;
+    backdrop-filter: blur(1px);
+">
+  <div><span style="color:#ccff33;">𒀱☥</span> <span id="days" style="color:#ff8ff7;">000</span></div>
+  <div><span style="color:#ccff33;">⚷</span> <span id="hours" style="color:#ff8ff7;">00</span></div>
+  <div><span style="color:#ccff33;">༒</span> <span id="minutes" style="color:#ff8ff7;">00</span></div>
+  <div><span style="color:#ccff33;">☌𒆜</span> <span id="seconds" style="color:#ff8ff7;">00</span></div>
+</div>
+
+<script>
+  const countdown = () => {
+    const target = new Date();
+    target.setDate(target.getDate() + 265);
+
+    const update = () => {
+      const now = new Date();
+      const diff = target - now;
+
+      if (diff <= 0) return;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = days.toString().padStart(3, '0');
+      document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+    };
+
+    setInterval(update, 1000);
+    update();
+  };
+
+  countdown();
+</script>
+<!-- رمز الثور في منتصف الصفحة - كبير وثابت -->
+<div style="
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 180px;
+  color: #ffee00;
+  text-shadow: 0 0 30px #ffee00, 0 0 60px #ffff66;
+  z-index: 1000;
+">
+  𓃒
+</div>
+<!DOCTYPE html>
+<html lang="la">
+<head>
+  <meta charset="UTF-8">
+  <title>Rex Taurōrum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      font-family: 'Cinzel', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #typewriter {
+      white-space: pre-wrap;
+      font-size: 22px;
+      max-width: 90%;
+      text-align: center;
+      opacity: 1;
+      transition: opacity 1s ease, color 1s ease, text-shadow 1s ease;
+      color: crimson;
+      text-shadow: 0 0 20px crimson;
+    }
+  </style>
+</head>
+<body>
+  <div id="typewriter"></div>
+
+  <script>
+    const text = `Rēx Taurōrum sub caelō fremuit,  
+Cornua eius gladius, oculī fatum sunt.
+
+In nocte tacitē per tenebrās movetur,  
+Velut vultus quem nēmō exspectat.
+
+Secretum vetustātis ferēns in corde,  
+Fidem frangit ubi mundus ipse fallit.`;
+
+    let index = 0;
+    const speed = 65;
+    const typewriter = document.getElementById("typewriter");
+
+    function typeWriter() {
+      if (index < text.length) {
+        typewriter.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, speed);
+      } else {
+        startToggleEffect(); // يبدأ التبديل بعد الانتهاء
+      }
+    }
+
+    window.onload = typeWriter;
+
+    function startToggleEffect() {
+      let visible = true;
+      let colorToggle = false;
+
+      setInterval(() => {
+        visible = !visible;
+        colorToggle = !colorToggle;
+
+        typewriter.style.opacity = visible ? 1 : 0;
+        typewriter.style.color = colorToggle ? "cyan" : "crimson";
+        typewriter.style.textShadow = colorToggle
+          ? "0 0 20px cyan"
+          : "0 0 20px crimson";
+      }, 5000); // كل 5 ثوانٍ
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="la">
+<head>
+  <meta charset="UTF-8">
+  <title>Rex Taurōrum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      font-family: 'Cinzel', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      transition: all 1s ease;
+    }
+
+    .text-block {
+      white-space: pre-wrap;
+      font-size: 22px;
+      max-width: 90%;
+      text-align: center;
+      opacity: 1;
+      transition: opacity 1s ease, color 1s ease, text-shadow 1s ease;
+      color: crimson;
+      text-shadow: 0 0 20px crimson;
+    }
+
+    #englishMessage {
+      display: none;
+      font-size: 24px;
+      color: cyan;
+      text-shadow: 0 0 15px cyan;
+      margin-top: 30px;
+      white-space: pre-wrap;
+    }
+
+    #error404 {
+      display: none;
+      font-size: 32px;
+      color: red;
+      text-shadow: 0 0 15px red;
+      text-align: center;
+      animation: glitch 0.3s infinite alternate;
+    }
+
+    @keyframes glitch {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(2px); }
+    }
+  </style>
+</head>
+<body>
+  <div id="typewriter" class="text-block"></div>
+  <div id="englishMessage"></div>
+  <div id="error404">404: Page Not Found</div>
+
+  <script>
+    const latinText = `Rēx Taurōrum sub caelō fremuit,  
+Cornua eius gladius, oculī fatum sunt.
+
+In nocte tacitē per tenebrās movetur,  
+Velut vultus quem nēmō exspectat.
+
+Secretum vetustātis ferēns in corde,  
+Fidem frangit ubi mundus ipse fallit.`;
+
+    let index = 0;
+    const speed = 65;
+    const typewriter = document.getElementById("typewriter");
+    const englishMessage = document.getElementById("englishMessage");
+    const error404 = document.getElementById("error404");
+
+    function typeWriter() {
+      if (index < latinText.length) {
+        typewriter.innerHTML += latinText.charAt(index);
+        index++;
+        setTimeout(typeWriter, speed);
+      } else {
+        startToggleEffect();
+        showEnglishMessageAfterDelay();
+      }
+    }
+
+    window.onload = typeWriter;
+
+    function startToggleEffect() {
+      let visible = true;
+      let colorToggle = false;
+
+      setInterval(() => {
+        visible = !visible;
+        colorToggle = !colorToggle;
+
+        typewriter.style.opacity = visible ? 1 : 0;
+        typewriter.style.color = colorToggle ? "cyan" : "crimson";
+        typewriter.style.textShadow = colorToggle
+          ? "0 0 20px cyan"
+          : "0 0 20px crimson";
+      }, 5000);
+    }
+
+    function showEnglishMessageAfterDelay() {
+      const englishText = [
+        "Welcome",
+        "Well done",
+        "We will contact you",
+        "Mr. M congratulates you.."
+      ];
+      let lineIndex = 0;
+      setTimeout(() => {
+        englishMessage.style.display = "block";
+        const interval = setInterval(() => {
+          if (lineIndex < englishText.length) {
+            englishMessage.innerHTML += englishText[lineIndex] + "\n";
+            lineIndex++;
+          } else {
+            clearInterval(interval);
+            trigger404AfterDelay();
+          }
+        }, 1200);
+      }, 20000);
+    }
+
+    function trigger404AfterDelay() {
+      setTimeout(() => {
+        document.body.innerHTML = ""; // حذف كل المحتوى
+        document.body.style.backgroundColor = "black";
+        document.body.appendChild(error404);
+        error404.style.display = "block";
+      }, 60000); // بعد دقيقة كاملة
+    }
+  </script>
+</body>
+</html>
