@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MGKO</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: monospace;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .title-container {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .title {
+      font-size: 36px;
+      color: #00f0ff;
+      text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #ff4d4d;
+      text-shadow: 0 0 10px #ffcccc, 0 0 5px #ffd700;
+    }
+
+    .enter-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background: #222;
+      color: #ffd700;
+      font-size: 14px;
+      border: 1px solid #555;
+      border-radius: 8px;
+      text-shadow: 0 0 5px #ffd700;
+      box-shadow: 0 0 10px #0f0;
+      cursor: pointer;
+      font-family: monospace;
+    }
+
+    .enter-button:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+<script>
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const symbols = '𓂀⌇𒁓∆Ω01∎⟊⌬𒆜⊠7𓊽⧉⌘𒈙';
+  const chars = symbols.split('');
+  const fontSize = 16;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
+
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#0F0';
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+
+      drops[i]++;
+    }
+  }
+
+  setInterval(drawMatrix, 50);
+</script>
+
+<div class="title-container">
+  <div class="title">𓂀MGK𒆜</div>
+  <div class="subtitle">✶⊹𒀱𒄿𒊕𒆠𒈠𒀭𒆬𒄿𒀭⊹✶</div>
+</div>
+
+<button class="enter-button">𒀱𒂍𒅗𒈠𒁕𒀜</button>
+
+<script>
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
+
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const symbols = "𒆠𒇻𒅗𒁲𒄑𒀀𒆬𒉿𒊍𒍑𒋼𒂍";
+  const fontSize = 3;
+  const columns = canvas.width / fontSize;
+
+  const drops = [];
+  for (let i = 0; i < columns; i++) {
+    drops[i] = Math.random() * canvas.height;
+  }
+
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00FF00";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = symbols.charAt(Math.floor(Math.random() * symbols.length));
+      const x = i * fontSize;
+      const y = drops[i] * fontSize;
+
+      // لا تطبع خلف العنوان
+      if (!(y < 100 && x > canvas.width / 2 - 200 && x < canvas.width / 2 + 200)) {
+        ctx.fillText(text, x, y);
+      }
+
+      if (y > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+
+      drops[i]++;
+    }
+  }
+
+  setInterval(drawMatrix, 70);
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+</body>
+</html>
+<body dir="rtl">
+  font-family: 'Amiri', serif;
+  <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نص هاروت وماروت</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #text {
+      position: absolute;
+      bottom: 80px; /* أبعد النص عن الزر */
+      right: 20px;
+      width: 260px;
+      color: red;
+      font-family: 'Amiri', serif;
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      text-shadow: 0 0 4px red;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .char {
+      display: inline-block;
+      animation: shake 0.15s ease-in-out;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(1px, -1px); }
+      50% { transform: translate(-1px, 1px); }
+      75% { transform: translate(1px, 1px); }
+      100% { transform: translate(0px, 0px); }
+    }
+  </style>
+</head>
+<body>
+  <div id="text"></div>
+
+  <script>
+    const text = `أيُّ سُطورٍ في السَّماءِ كُتِبَتْ... في شَأنِ هاروتَ وماروتَ وما خَفِيَ
+والنّارُ في عَينِ النَّمرودِ اشتَعَلَت... حتّى كأنَّ العُرشَ قد نَسِيَ الوَفِيَّ
+
+خانَ السَّماءَ ونازَعَ الرَّبَّ العُلا... فهَوَى كَما يَهوي الطَّغاةُ إلى الشَّقِيِّ
+فدَعا الجنودَ وقال: "أنا الإلهُ"... فطَواهُ نَسْرٌ في الجَليلِ ولا نَجِي`;
+
+    const container = document.getElementById("text");
+
+    setTimeout(() => {
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          const span = document.createElement("span");
+          span.textContent = text[i];
+          if (text[i] !== ' ' && text[i] !== '\n') {
+            span.classList.add('char');
+          }
+          container.appendChild(span);
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 60);
+    }, 5000);
+  </script>
+</body>
+</html>
+#text {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  width: 200px; /* تم تقليل العرض */
+  color: red;
+  font-family: 'Amiri', serif;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  text-shadow: 0 0 4px red;
+  direction: rtl;
+  text-align: right;
+}
+<audio id="typingSound" src="typewriter.mp3"></audio>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      const text = document.getElementById('text');
+      const audio = document.getElementById('typingSound');
+      text.style.display = 'block';
+      audio.play();
+    }, 5000);
+  });
+</script>
+<div id="countdown" style="
+    position: fixed;
+    bottom: 90px;
+    left: 5px;
+    font-size: 3px;
+    color: crimson;
+    font-family: monospace;
+    padding: 8px 6px;
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 0, 255, 0.4);
+    box-shadow: inset 0 0 4px rgba(255, 0, 255, 0.2), 0 0 3px rgba(255, 255, 0, 0.1);
+    background: repeating-linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.02),
+        rgba(0, 0, 0, 0.02) 2px,
+        rgba(0, 0, 0, 0.05) 2px,
+        rgba(0, 0, 0, 0.05) 4px
+    );
+    z-index: 1000;
+    width: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    line-height: 1.5;
+    backdrop-filter: blur(1px);
+">
+  <div><span style="color:#ccff33;">𒀱☥</span> <span id="days" style="color:#ff8ff7;">000</span></div>
+  <div><span style="color:#ccff33;">⚷</span> <span id="hours" style="color:#ff8ff7;">00</span></div>
+  <div><span style="color:#ccff33;">༒</span> <span id="minutes" style="color:#ff8ff7;">00</span></div>
+  <div><span style="color:#ccff33;">☌𒆜</span> <span id="seconds" style="color:#ff8ff7;">00</span></div>
+</div>
+
+<script>
+  const countdown = () => {
+    const target = new Date();
+    target.setDate(target.getDate() + 265);
+
+    const update = () => {
+      const now = new Date();
+      const diff = target - now;
+
+      if (diff <= 0) return;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = days.toString().padStart(3, '0');
+      document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+    };
+
+    setInterval(update, 1000);
+    update();
+  };
+
+  countdown();
+</script>
